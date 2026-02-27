@@ -10,7 +10,6 @@ function Interview() {
 
     const { role, difficulty, duration } = location.state || {};
 
-    // Convert duration to seconds
     const durationMap = {
         "15 min": 15 * 60,
         "30 min": 30 * 60,
@@ -23,6 +22,7 @@ function Interview() {
     const [questionIndex, setQuestionIndex] = useState(0);
     const [answer, setAnswer] = useState("");
     const [answers, setAnswers] = useState([]);
+    const [showWarning, setShowWarning] = useState(false); // 🔥 NEW
 
     const questions = [
         "Explain the difference between var, let, and const.",
@@ -67,6 +67,12 @@ function Interview() {
     };
 
     const handleFinish = (finalAnswers = answers) => {
+        // 🔥 CHECK IF AT LEAST ONE ANSWER EXISTS
+        if (finalAnswers.length === 0 && !answer.trim()) {
+            setShowWarning(true);
+            return;
+        }
+
         navigate("/feedback", {
             state: {
                 role,
@@ -77,7 +83,8 @@ function Interview() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#0f0f1b] via-[#121225] to-[#0d0d18] text-white relative overflow-hidden">      <AnimatedBackground />
+        <div className="min-h-screen bg-gradient-to-br from-[#0f0f1b] via-[#121225] to-[#0d0d18] text-white relative overflow-hidden">
+            <AnimatedBackground />
             <Navbar />
 
             <div className="relative z-10 flex max-w-7xl mx-auto px-6 pt-32 pb-20 gap-10">
@@ -98,7 +105,8 @@ function Interview() {
 
                     <button
                         onClick={() => handleFinish()}
-                        className="mt-8 w-full py-3 rounded-xl bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/40 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] transition-all duration-300"          >
+                        className="mt-8 w-full py-3 rounded-xl bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/40 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] transition-all duration-300"
+                    >
                         End Interview
                     </button>
                 </div>
@@ -106,18 +114,17 @@ function Interview() {
                 {/* MAIN INTERVIEW AREA */}
                 <div className="flex-1">
 
-                    {/* Question Card */}
                     <motion.div
                         key={questionIndex}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 backdrop-blur-2xl border border-indigo-400/20 rounded-2xl p-8 shadow-[0_0_80px_rgba(139,92,246,0.25)] transition-all duration-500"                    >
+                        className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 backdrop-blur-2xl border border-indigo-400/20 rounded-2xl p-8 shadow-[0_0_80px_rgba(139,92,246,0.25)] transition-all duration-500"
+                    >
                         <h2 className="text-2xl font-semibold mb-6">
                             {questions[questionIndex]}
                         </h2>
 
-                        {/* Answer Box */}
                         <textarea 
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
@@ -125,7 +132,6 @@ function Interview() {
                             className="w-full h-40 bg-black/30 border border-white/10 rounded-xl p-4 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition resize-none"
                         />
 
-                        {/* Controls */}
                         <div className="flex justify-between mt-6">
                             <button
                                 onClick={handleNext}
@@ -145,6 +151,27 @@ function Interview() {
                 </div>
 
             </div>
+
+            {/* 🔥 WARNING POPUP */}
+            {showWarning && (
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+                    <div className="bg-[#1a1a2e] p-8 rounded-2xl border border-red-400/30 shadow-[0_0_40px_rgba(239,68,68,0.5)] text-center max-w-sm">
+                        <h3 className="text-xl font-semibold mb-4 text-red-400">
+                            ⚠ Incomplete Interview
+                        </h3>
+                        <p className="text-gray-300 mb-6">
+                            Please answer at least one question before ending the session.
+                        </p>
+
+                        <button
+                            onClick={() => setShowWarning(false)}
+                            className="px-6 py-2 bg-red-500/20 border border-red-400/40 rounded-xl hover:bg-red-500/30 transition"
+                        >
+                            Okay
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

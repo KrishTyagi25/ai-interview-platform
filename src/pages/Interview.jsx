@@ -118,7 +118,7 @@ function Interview() {
                         </h2>
 
                         {/* Answer Box */}
-                        <textarea
+                        <textarea 
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             placeholder="Type your answer here..."

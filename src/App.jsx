@@ -4,6 +4,8 @@ import ResumeUpload from './pages/ResumeUpload';
 import InterviewSetup from './pages/InterviewSetup';
 import { div } from 'framer-motion/client';
 import Interview from './pages/Interview';
+import Feedback from './pages/Feedback';
+import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Routes>
@@ -23,6 +25,16 @@ function App() {
       <Route 
       path="/interview/"
       element={<Interview/>}
+      
+      />
+      <Route
+      path="/feedback"
+      element={<Feedback/>}
+      />
+
+      <Route
+      path="/dashboard" 
+      element={<Dashboard/>}
       
       />
       

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { div } from 'framer-motion/client';
 function AnimatedBackground() {
     return (
         <div className='absolute inset-0 -z-10 overflow-hidden'>

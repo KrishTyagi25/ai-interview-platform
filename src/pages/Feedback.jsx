@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import AnimatedBackground from "../components/AnimatedBackground";
+import SkillsChart from "../components/SkillsChart";
 
 function Feedback() {
   const location = useLocation();
@@ -34,17 +35,13 @@ function Feedback() {
 
     // Difficulty multiplier
     const difficultyMultiplier =
-      difficulty === "Hard"
-        ? 1.1
-        : difficulty === "Medium"
-        ? 1
-        : 0.9;
+      difficulty === "Hard" ? 1.1 : difficulty === "Medium" ? 1 : 0.9;
 
     depthScore = depthScore * difficultyMultiplier;
 
     const overallScore = Math.min(
-      Math.round((depthScore * 0.6 + completionScore * 0.4)),
-      100
+      Math.round(depthScore * 0.6 + completionScore * 0.4),
+      100,
     );
 
     return {
@@ -56,23 +53,21 @@ function Feedback() {
     };
   }, [answers, difficulty]);
 
-if (!analysis) {
-  return (
-    <div className="min-h-screen flex items-center justify-center text-white">
-      <h1>No interview data found. Please complete interview first.</h1>
-    </div>
-  );
-}
+  if (!analysis) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        <h1>No interview data found. Please complete interview first.</h1>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f0f1b] via-[#121225] to-[#0d0d18] text-white relative overflow-hidden">
       <AnimatedBackground />
       <Navbar />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
-
         {/* HERO SECTION */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
-
           <div>
             <h1 className="text-4xl font-bold mb-4">
               Technical Interview Report
@@ -84,7 +79,11 @@ if (!analysis) {
 
             <div className="bg-indigo-500/10 border border-indigo-400/30 p-6 rounded-2xl">
               <p className="text-gray-300">
-                You answered <span className="text-white font-semibold">{analysis.completed}</span> out of {totalQuestions} questions.
+                You answered{" "}
+                <span className="text-white font-semibold">
+                  {analysis.completed}
+                </span>{" "}
+                out of {totalQuestions} questions.
               </p>
               <p className="text-gray-300 mt-2">
                 Average answer length:{" "}
@@ -112,7 +111,10 @@ if (!analysis) {
 
         {/* BREAKDOWN */}
         <div className="grid md:grid-cols-2 gap-8 mt-20">
-
+          {/* SKILLS CHART */}
+          <div className="mt-20">
+            <SkillsChart />
+          </div>
           <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
             <h3 className="text-xl font-semibold mb-4">Technical Depth</h3>
             <p className="text-3xl font-bold text-indigo-400">
@@ -132,7 +134,6 @@ if (!analysis) {
               Based on number of attempted questions.
             </p>
           </div>
-
         </div>
 
         {/* ACTION */}
@@ -151,7 +152,6 @@ if (!analysis) {
             Go To Dashboard
           </button>
         </div>
-
       </div>
     </div>
   );

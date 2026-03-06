@@ -11,15 +11,19 @@ function InterviewSetup() {
   const [difficulty, setDifficulty] = useState("");
   const [duration, setDuration] = useState("");
 
-  const roles = ["Frontend Developer", "Backend Developer", "Full Stack", "DSA Focus"];
+  const roles = ["Frontend Developer", "Backend Developer", "Full-Stack Developer", "DSA"];
   const difficulties = ["Easy", "Medium", "Hard"];
   const durations = ["15 min", "30 min", "45 min"];
 
-  const handleStart = () => {
-    if (role && difficulty && duration) {
-      navigate("/interview");
+const handleStart = () => {
+  navigate("/interview", {
+    state: {
+      role: role,
+      difficulty: difficulty,
+      duration: duration
     }
-  };
+  });
+};
 
   const Card = ({ value, selected, onClick }) => (
     <motion.div

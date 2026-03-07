@@ -2,10 +2,12 @@ import Landing from './pages/Landing'
 import { Routes, Route } from "react-router-dom";
 import ResumeUpload from './pages/ResumeUpload';
 import InterviewSetup from './pages/InterviewSetup';
-// import { div } from 'framer-motion/client';
 import Interview from './pages/Interview';
 import Feedback from './pages/Feedback';
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+
+
 function App() {
   return (
     <Routes>
@@ -36,6 +38,10 @@ function App() {
       path="/dashboard" 
       element={<Dashboard/>}
       
+      />
+      <Route
+      path = "/profile"
+      element={<Profile/>}
       />
       
        </Routes>)

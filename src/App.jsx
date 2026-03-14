@@ -2,7 +2,7 @@ import Landing from './pages/Landing'
 import { Routes, Route } from "react-router-dom";
 import ResumeUpload from './pages/ResumeUpload';
 import InterviewSetup from './pages/InterviewSetup';
-import Interview from './pages/Interview';
+import InterviewRoom from './pages/InterviewRoom';
 import Feedback from './pages/Feedback';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
@@ -25,8 +25,8 @@ function App() {
       />
 
       <Route 
-      path="/interview/"
-      element={<Interview/>}
+      path="/interview-room/"
+      element={<InterviewRoom/>}
       
       />
       <Route
@@ -43,6 +43,5 @@ function App() {
       path = "/profile"
       element={<Profile/>}
       />
-      
        </Routes>)
 } export default App

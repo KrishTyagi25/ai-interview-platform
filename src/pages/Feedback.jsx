@@ -139,7 +139,7 @@ function Feedback() {
         {/* ACTION */}
         <div className="flex justify-center gap-6 mt-20">
           <button
-            onClick={() => navigate("/interview")}
+            onClick={() => navigate("/setup")}
             className="px-8 py-3 rounded-xl bg-primary shadow-[0_0_30px_rgba(99,102,241,0.5)] transition"
           >
             Retry Interview

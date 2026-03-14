@@ -1,4 +1,3 @@
-import { DiCelluloid } from "react-icons/di";
 import Navbar from "../components/Navbar";
 import ProfileHeader from "../components/ProfileHeader";
 import ProjectsSection from "../components/ProjectsSection";

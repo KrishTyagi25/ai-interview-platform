@@ -16,7 +16,7 @@ function InterviewSetup() {
   const durations = ["15 min", "30 min", "45 min"];
 
 const handleStart = () => {
-  navigate("/interview", {
+  navigate("/interview-room", {
     state: {
       role: role,
       difficulty: difficulty,

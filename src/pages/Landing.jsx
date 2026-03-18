@@ -14,6 +14,26 @@ function Landing() {
       <Navbar />
 
 <div className="flex flex-col items-center justify-center text-center px-6 pt-40 min-h-[80vh]">
+
+
+  {/* 🔥 LOGO - NETFLIX STYLE */}
+<motion.img
+  src="/favicon.png"
+  alt="logo"
+  
+  initial={{ scale: 0.2, opacity: 0, rotate: -10 }}
+  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+  
+  transition={{
+    duration: 0.8,
+    ease: "easeOut"
+  }}
+  
+  whileHover={{ scale: 1.08 }}
+  
+  className="w-24 h-24 md:w-28 md:h-28 mb-6 rounded-2xl 
+             drop-shadow-[0_0_25px_rgba(99,102,241,0.8)]"
+/>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

@@ -15,29 +15,25 @@ function InterviewSetup() {
   const difficulties = ["Easy", "Medium", "Hard"];
   const durations = ["15 min", "30 min", "45 min"];
 
-const handleStart = () => {
-  navigate("/interview-room", {
-    state: {
-      role: role,
-      difficulty: difficulty,
-      duration: duration
-    }
-  });
-};
+  const handleStart = () => {
+    navigate("/interview-room", {
+      state: { role, difficulty, duration }
+    });
+  };
 
   const Card = ({ value, selected, onClick }) => (
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
       onClick={onClick}
-      className={`cursor-pointer px-8 py-5 rounded-2xl border transition text-center backdrop-blur-lg
+      className={`cursor-pointer px-5 py-4 sm:px-6 sm:py-5 rounded-xl border text-sm sm:text-base transition backdrop-blur-lg
       ${
         selected
-          ? "border-primary bg-primary/20 shadow-[0_0_40px_rgba(99,102,241,0.5)]"
-          : "border-white/10 bg-white/5 hover:border-primary/50"
+          ? "border-primary bg-primary/20 shadow-[0_0_25px_rgba(99,102,241,0.4)]"
+          : "border-white/10 bg-white/5 hover:border-primary/40"
       }`}
     >
-      <span className="text-lg font-medium">{value}</span>
+      {value}
     </motion.div>
   );
 
@@ -46,30 +42,26 @@ const handleStart = () => {
       <AnimatedBackground />
       <Navbar />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-20">
 
         {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Configure Your Interview
           </h2>
-          <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+
+          <p className="text-gray-400 mt-4 sm:mt-6 text-sm sm:text-base max-w-xl mx-auto">
             Customize your AI mock interview experience and simulate real-world hiring rounds.
           </p>
-        </motion.div>
+        </div>
 
-        {/* ROLE SECTION */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold mb-8 text-center">
+        {/* ROLE */}
+        <div className="mb-12">
+          <h3 className="text-lg sm:text-xl font-medium mb-6 text-center">
             Select Role
           </h3>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
             {roles.map((r) => (
               <Card
                 key={r}
@@ -82,12 +74,12 @@ const handleStart = () => {
         </div>
 
         {/* DIFFICULTY */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold mb-8 text-center">
+        <div className="mb-12">
+          <h3 className="text-lg sm:text-xl font-medium mb-6 text-center">
             Difficulty Level
           </h3>
 
-          <div className="flex justify-center gap-8 flex-wrap">
+          <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
             {difficulties.map((d) => (
               <Card
                 key={d}
@@ -100,12 +92,12 @@ const handleStart = () => {
         </div>
 
         {/* DURATION */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-semibold mb-8 text-center">
+        <div className="mb-16">
+          <h3 className="text-lg sm:text-xl font-medium mb-6 text-center">
             Interview Duration
           </h3>
 
-          <div className="flex justify-center gap-8 flex-wrap">
+          <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
             {durations.map((t) => (
               <Card
                 key={t}
@@ -117,25 +109,22 @@ const handleStart = () => {
           </div>
         </div>
 
-        {/* START BUTTON */}
-        <motion.div
-          className="flex justify-center"
-          whileHover={{ scale: role && difficulty && duration ? 1.05 : 1 }}
-          whileTap={{ scale: 0.97 }}
-        >
+        {/* BUTTON */}
+        <div className="flex justify-center">
           <button
             onClick={handleStart}
             disabled={!role || !difficulty || !duration}
-            className={`px-14 py-4 rounded-2xl text-lg font-semibold transition-all duration-300
+            className={`px-8 sm:px-10 py-3 rounded-xl text-sm sm:text-base font-semibold transition-all
             ${
               role && difficulty && duration
-                ? "bg-gradient-to-r from-primary to-secondary shadow-[0_0_60px_rgba(99,102,241,0.6)]"
+                ? "bg-gradient-to-r from-primary to-secondary shadow-[0_0_40px_rgba(99,102,241,0.5)]"
                 : "bg-gray-700 cursor-not-allowed"
             }`}
           >
             Start AI Interview
           </button>
-        </motion.div>
+        </div>
+
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ function Profile() {
 
         {/* SKILLS + STATS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 mb-10 sm:mb-14 text-sm w-full">
-          
+
           <div className="w-full min-w-0">
             <SkillsSection />
           </div>

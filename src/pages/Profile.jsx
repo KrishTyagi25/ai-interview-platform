@@ -7,27 +7,36 @@ import AnimatedBackground from "../components/AnimatedBackground";
 
 function Profile() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#020617] text-white relative overflow-x-hidden">
 
       <AnimatedBackground />
       <Navbar />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-6 pt-36 pb-24">
+      <div className="relative z-10 max-w-4xl w-full mx-auto px-4 sm:px-6 pt-32 pb-20">
 
         {/* HEADER */}
-        <div className="mb-12 sm:mb-16 scale-[0.98]">
+        <div className="mb-10 sm:mb-14 w-full">
           <ProfileHeader />
         </div>
 
         {/* SKILLS + STATS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 sm:gap-10 mb-12 sm:mb-16 text-[0.95rem]">
-          <SkillsSection />
-          <StatsSection />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 mb-10 sm:mb-14 text-sm w-full">
+          
+          <div className="w-full min-w-0">
+            <SkillsSection />
+          </div>
+
+          <div className="w-full min-w-0">
+            <StatsSection />
+          </div>
+
         </div>
 
         {/* PROJECTS */}
-        <div className="mt-8 sm:mt-12 text-[0.95rem]">
-          <ProjectsSection />
+        <div className="mt-6 sm:mt-10 w-full text-sm">
+          <div className="w-full min-w-0">
+            <ProjectsSection />
+          </div>
         </div>
 
       </div>

@@ -6,6 +6,7 @@ import InterviewRoom from './pages/InterviewRoom';
 import Feedback from './pages/Feedback';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import Login from './pages/Auth/Login';
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
       <Route
       path = "/profile"
       element={<Profile/>}
+      />
+      <Route
+      path = "/login"
+      element = {<Login/>}
       />
        </Routes>)
 } export default App
